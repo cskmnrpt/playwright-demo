@@ -2,6 +2,20 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   retries: 1,
+  workers: 8,
+  fullyParallel: true,
+  use: {
+    baseURL: "https://gameday-gear.lovable.app",
+    screenshot: "on",
+    video: "on",
+    trace: "retain-on-failure",
+  },
+  projects: [
+    { name: "smoke", testMatch: /smoke\.spec\.js/ },
+    { name: "core-regression", testMatch: /core-regression\.spec\.js/ },
+    { name: "full-regression", testMatch: /full-regression\.spec\.js/ },
+    { name: "examples", testMatch: /tests\/examples\// },
+  ],
   reporter: [
     ["list"],
     [
