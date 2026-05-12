@@ -1,9 +1,13 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { qase } from 'playwright-qase-reporter';
 import { clearCartViaUi, clearWishlistIfVisible, demoLog, recordPause } from './helpers.js';
 
 test.describe('Smoke', () => {
-  test('Shop loads with GameDay Gear hero and catalog', async ({ page }, testInfo) => {
+  test(qase(22, 'Shop loads with GameDay Gear hero and catalog'), async ({ page }, testInfo) => {
+    // Misc demo: explicitly set fields on the result.
+    qase.fields({ severity: 'critical', priority: 'high', layer: 'e2e' });
+
     await test.step('Open shop home', async () => {
       demoLog(testInfo, 'Navigating to /');
       await page.goto('/');
@@ -22,7 +26,10 @@ test.describe('Smoke', () => {
     });
   });
 
-  test('Search finds Basketball', async ({ page }, testInfo) => {
+  test(qase(23, 'Search finds Basketball'), async ({ page }, testInfo) => {
+    // Misc demo: comment is rendered in the result's "Actual result" field on Qase.
+    qase.comment('Filters the catalog by the search term `basketball` and asserts a single Basketball product is returned.');
+
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
     await recordPause(page);
@@ -39,7 +46,7 @@ test.describe('Smoke', () => {
     });
   });
 
-  test('E2E add first catalog item and open cart from nav', async ({ page }, testInfo) => {
+  test(qase(24, 'E2E add first catalog item and open cart from nav'), async ({ page }, testInfo) => {
     await test.step('Start from clean cart', async () => {
       await clearCartViaUi(page);
       demoLog(testInfo, 'Cart cleared');
@@ -63,7 +70,7 @@ test.describe('Smoke', () => {
     });
   });
 
-  test('Shopping cart empty after clear', async ({ page }, testInfo) => {
+  test(qase(25, 'Shopping cart empty after clear'), async ({ page }, testInfo) => {
     await clearCartViaUi(page);
     await test.step('Empty cart message', async () => {
       demoLog(testInfo, 'Verifying empty-cart state');
@@ -73,7 +80,7 @@ test.describe('Smoke', () => {
     });
   });
 
-  test('Login page and skip login to shop', async ({ page }, testInfo) => {
+  test(qase(26, 'Login page and skip login to shop'), async ({ page }, testInfo) => {
     await test.step('Open login', async () => {
       await page.goto('/login');
       await recordPause(page);
@@ -90,7 +97,7 @@ test.describe('Smoke', () => {
     });
   });
 
-  test('Wishlist empty and footer Qase disclaimer', async ({ page }, testInfo) => {
+  test(qase(27, 'Wishlist empty and footer Qase disclaimer'), async ({ page }, testInfo) => {
     await test.step('Reset wishlist', async () => {
       await page.goto('/wishlist', { waitUntil: 'domcontentloaded' });
       await clearWishlistIfVisible(page);

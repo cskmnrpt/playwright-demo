@@ -1,5 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { qase } from 'playwright-qase-reporter';
 import {
   assertDemo,
   clearCartViaUi,
@@ -16,19 +17,14 @@ import {
 async function fillCheckoutForm(page) {
   await page.getByTestId('checkout-first-name').fill('Mike');
   await page.getByTestId('checkout-last-name').fill('James');
-  await page.getByTestId('checkout-email').fill('mike@test.com');
-  await page.getByTestId('checkout-phone').fill('555-0100');
-  await page.getByTestId('checkout-address').fill('1 Main St');
-  await page.getByTestId('checkout-city').fill('NYC');
-  await page.getByTestId('checkout-country').fill('USA');
-  await page.getByTestId('checkout-zip').fill('10001');
-  await page.getByTestId('checkout-card-number').fill('4111111111111111');
-  await page.getByTestId('checkout-expiry').fill('12/30');
-  await page.getByTestId('checkout-cvv').fill('123');
 }
 
-/* ——— Login ——— */
+/* Login */
 test.describe('Login flow', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tLogin flow');
+  });
+
   test('Successful login as admin', async ({ page }, testInfo) => {
     await page.goto('/login');
     await recordPause(page);
@@ -87,8 +83,12 @@ test.describe('Login flow', () => {
   });
 });
 
-/* ——— Shop ——— */
+/* Shop */
 test.describe('Shop catalog', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tShop catalog');
+  });
+
   test('Shop page shows eight products', async ({ page }, testInfo) => {
     await page.goto('/');
     await expect(page.getByTestId('shop-page')).toBeVisible();
@@ -182,8 +182,12 @@ test.describe('Shop catalog', () => {
   });
 });
 
-/* ——— Product detail ——— */
+/* Product detail */
 test.describe('Product detail page', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tProduct detail page');
+  });
+
   test('prod-004 Running Sneakers details', async ({ page }, testInfo) => {
     await page.goto('/product/prod-004');
     await recordPause(page);
@@ -258,8 +262,12 @@ test.describe('Product detail page', () => {
   });
 });
 
-/* ——— Cart ——— */
+/* Cart */
 test.describe('Shopping cart', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tShopping cart');
+  });
+
   test('Empty cart state', async ({ page }, testInfo) => {
     await clearCartViaUi(page);
     await recordPause(page);
@@ -357,8 +365,12 @@ test.describe('Shopping cart', () => {
   });
 });
 
-/* ——— Checkout ——— */
+/* Checkout */
 test.describe('Checkout', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tCheckout');
+  });
+
   test('Empty cart checkout guidance', async ({ page }, testInfo) => {
     await clearCartViaUi(page);
     await page.goto('/checkout');
@@ -416,15 +428,6 @@ test.describe('Checkout', () => {
     await page.goto('/checkout');
     await page.getByTestId('checkout-first-name').fill('John');
     await page.getByTestId('checkout-last-name').fill('Wilson');
-    await page.getByTestId('checkout-email').fill('john@test.com');
-    await page.getByTestId('checkout-phone').fill('555');
-    await page.getByTestId('checkout-address').fill('St');
-    await page.getByTestId('checkout-city').fill('City');
-    await page.getByTestId('checkout-country').fill('US');
-    await page.getByTestId('checkout-zip').fill('12345');
-    await page.getByTestId('checkout-card-number').fill('4111111111111111');
-    await page.getByTestId('checkout-expiry').fill('01/31');
-    await page.getByTestId('checkout-cvv').fill('321');
     await page.getByTestId('place-order-btn').click();
     await recordPause(page);
     await expect(page.getByTestId('continue-shopping-btn')).toBeVisible({ timeout: 15000 });
@@ -435,8 +438,12 @@ test.describe('Checkout', () => {
   });
 });
 
-/* ——— Wishlist ——— */
+/* Wishlist */
 test.describe('Wishlist page', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tWishlist page');
+  });
+
   test('Empty wishlist', async ({ page }, testInfo) => {
     await page.goto('/wishlist');
     await clearWishlistIfVisible(page);
@@ -496,8 +503,12 @@ test.describe('Wishlist page', () => {
   });
 });
 
-/* ——— Account ——— */
+/* Account */
 test.describe('Account page', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tAccount page');
+  });
+
   test('Account login prompt when guest', async ({ page }, testInfo) => {
     await page.goto('/account');
     await expect(page.getByTestId('account-login-prompt')).toBeVisible();
@@ -549,8 +560,12 @@ test.describe('Account page', () => {
   });
 });
 
-/* ——— Footer routing E2E ——— */
+/* Footer routing E2E */
 test.describe('Footer and routing', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tFooter and routing');
+  });
+
   test('Footer Qase disclaimer', async ({ page }, testInfo) => {
     await page.goto('/');
     await page.getByTestId('footer').scrollIntoViewIfNeeded();
@@ -611,8 +626,12 @@ test.describe('Footer and routing', () => {
   });
 });
 
-/* ——— Demo compliance ——— */
+/* Demo compliance */
 test.describe('Demo compliance check', () => {
+  test.beforeEach(() => {
+    qase.suite('Full Regression (Automated)\tDemo compliance check');
+  });
+
   test('Catalog must include Pro Carbon Cricket Bat', async ({ page }, testInfo) => {
     await page.goto('/');
     await page.getByTestId('search-input').fill('Pro Carbon Cricket Bat');
