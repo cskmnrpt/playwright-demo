@@ -1,41 +1,51 @@
 import { defineConfig } from "@playwright/test";
+import "dotenv/config";
 
 export default defineConfig({
-  retries: 1,
+  retries: 0,
+  workers: 8,
+  fullyParallel: true,
+  use: {
+    baseURL: "https://gameday-gear.lovable.app",
+    screenshot: "on",
+    video: "on",
+    trace: "retain-on-failure",
+  },
+  projects: [
+    { name: "smoke", testMatch: /smoke\.spec\.js/ },
+    { name: "core-regression", testMatch: /core-regression\.spec\.js/ },
+    { name: "full-regression", testMatch: /full-regression\.spec\.js/ },
+    // The examples folder includes tests/examples/flaky.spec.js, which is a deliberate
+    // demo of a flaky test (fails on attempt 0, passes on retry). Keep retries: 1
+    // for examples so that demo behaves as designed and CI on the examples folder passes.
+    { name: "examples", testMatch: /tests\/examples\/.*\.spec\.js$/, retries: 1 },
+  ],
   reporter: [
     ["list"],
     [
       "playwright-qase-reporter",
       {
+        mode: "testops",
+        debug: false,
         environment: "prod",
-
-        // If you use playwright projects, use these options to pass them as parameters.
+        testops: {
+          api: {
+            token: process.env.QASE_TESTOPS_API_TOKEN || process.env.QASE_API_TOKEN,
+          },
+          project: "DEMOPROJ",
+          uploadAttachments: true,
+          showPublicReportLink: true,
+          run: {
+            complete: true,
+          },
+        },
         framework: {
           markAsFlaky: true,
           browser: {
-            addAsParameter: true,
+            addAsParameter: false,
             parameterName: "Browser",
           },
         },
-        /*
-        // You can define the reporter options here, or in a separate `qase.config.json` file.
-        mode: 'testops',
-        debug: false,
-        testops: {
-          api: {
-            token: 'api_key',
-          },
-          project: 'project_code',
-          uploadAttachments: true,
-          run: {
-          //  id: 1,
-            title: `Regression run - ${new Date().toISOString()}`,
-            description: "Automated Test run by Playwright",
-            complete: true,
-          },
-          environment: 'prod',
-        },
-      */
       },
     ],
   ],
