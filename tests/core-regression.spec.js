@@ -13,7 +13,7 @@ import {
 
 test.describe('Login', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tLogin');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tLogin');
   });
 
   test(qase(28, 'Admin login redirects to shop with signed-in state'), async ({ page }, testInfo) => {
@@ -77,7 +77,7 @@ test.describe('Login', () => {
 
 test.describe('Shop catalog', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tShop catalog');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tShop catalog');
   });
 
   test(qase(32, 'Eight products and nav logo'), async ({ page }, testInfo) => {
@@ -156,7 +156,7 @@ test.describe('Shop catalog', () => {
 
 test.describe('E2E product flows', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tE2E product flows');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tE2E product flows');
   });
 
   test(qase(39, 'E2E Running Sneakers detail to cart'), async ({ page }, testInfo) => {
@@ -213,7 +213,7 @@ test.describe('E2E product flows', () => {
 
 test.describe('Wishlist and account', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tWishlist and account');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tWishlist and account');
   });
 
   test(qase(42, 'Wishlist heart toggle updates navbar'), async ({ page }, testInfo) => {
@@ -236,7 +236,7 @@ test.describe('Wishlist and account', () => {
 
 test.describe('Checkout routing', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tCheckout routing');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tCheckout routing');
   });
 
   test(qase(44, 'Checkout with empty cart shows guidance'), async ({ page }, testInfo) => {
@@ -250,7 +250,7 @@ test.describe('Checkout routing', () => {
 
 test.describe('Routing and footer', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tRouting and footer');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tRouting and footer');
   });
 
   test(qase(45, 'Not found route shows 404 content'), async ({ page }, testInfo) => {
@@ -272,7 +272,7 @@ test.describe('Routing and footer', () => {
 
 test.describe('Demo defect', () => {
   test.beforeEach(() => {
-    qase.suite('Core Regression (Automated)\tDemo defect');
+    qase.suite('Getting started with automation integration\tExamples\tCore regression\tDemo defect');
   });
 
   test(qase(47, 'Catalog must list nine products on shop home'), async ({ page }, testInfo) => {

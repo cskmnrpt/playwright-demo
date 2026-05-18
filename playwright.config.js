@@ -2,7 +2,7 @@ import { defineConfig } from "@playwright/test";
 import "dotenv/config";
 
 export default defineConfig({
-  retries: 1,
+  retries: 0,
   workers: 8,
   fullyParallel: true,
   use: {
@@ -29,7 +29,7 @@ export default defineConfig({
           api: {
             token: process.env.QASE_TESTOPS_API_TOKEN || process.env.QASE_API_TOKEN,
           },
-          project: "DPT",
+          project: "DEMOEXEC",
           uploadAttachments: true,
           showPublicReportLink: true,
           run: {
@@ -39,7 +39,7 @@ export default defineConfig({
         framework: {
           markAsFlaky: true,
           browser: {
-            addAsParameter: true,
+            addAsParameter: false,
             parameterName: "Browser",
           },
         },
