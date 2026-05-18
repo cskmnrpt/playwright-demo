@@ -29,7 +29,7 @@ export default defineConfig({
           api: {
             token: process.env.QASE_TESTOPS_API_TOKEN || process.env.QASE_API_TOKEN,
           },
-          project: "DEMOEXEC",
+          project: "DEMOPROJ",
           uploadAttachments: true,
           showPublicReportLink: true,
           run: {
