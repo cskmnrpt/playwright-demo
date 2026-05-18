@@ -15,7 +15,10 @@ export default defineConfig({
     { name: "smoke", testMatch: /smoke\.spec\.js/ },
     { name: "core-regression", testMatch: /core-regression\.spec\.js/ },
     { name: "full-regression", testMatch: /full-regression\.spec\.js/ },
-    { name: "examples", testMatch: /tests\/examples\/.*\.spec\.js$/ },
+    // The examples folder includes tests/examples/flaky.spec.js, which is a deliberate
+    // demo of a flaky test (fails on attempt 0, passes on retry). Keep retries: 1
+    // for examples so that demo behaves as designed and CI on the examples folder passes.
+    { name: "examples", testMatch: /tests\/examples\/.*\.spec\.js$/, retries: 1 },
   ],
   reporter: [
     ["list"],
