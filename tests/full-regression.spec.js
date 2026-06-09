@@ -24,7 +24,7 @@ const BASE_PRE = 'GameDay Gear demo storefront is reachable at https://gameday-g
 /* Login */
 test.describe('Login flow', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tLogin flow');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tLogin flow');
   });
 
   test('Successful login as admin', async ({ page }, testInfo) => {
@@ -242,7 +242,7 @@ test.describe('Login flow', () => {
 /* Shop */
 test.describe('Shop catalog', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tShop catalog');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tShop catalog');
   });
 
   test('Shop page shows eight products', async ({ page }, testInfo) => {
@@ -621,7 +621,7 @@ test.describe('Shop catalog', () => {
 /* Product detail */
 test.describe('Product detail page', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tProduct detail page');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tProduct detail page');
   });
 
   test('prod-004 Running Sneakers details', async ({ page }, testInfo) => {
@@ -897,7 +897,7 @@ test.describe('Product detail page', () => {
 /* Cart */
 test.describe('Shopping cart', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tShopping cart');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tShopping cart');
   });
 
   test('Empty cart state', async ({ page }, testInfo) => {
@@ -1196,7 +1196,7 @@ test.describe('Shopping cart', () => {
 /* Checkout */
 test.describe('Checkout', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tCheckout');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tCheckout');
   });
 
   test('Empty cart checkout guidance', async ({ page }, testInfo) => {
@@ -1405,7 +1405,7 @@ test.describe('Checkout', () => {
 /* Wishlist */
 test.describe('Wishlist page', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tWishlist page');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tWishlist page');
   });
 
   test('Empty wishlist', async ({ page }, testInfo) => {
@@ -1594,7 +1594,7 @@ test.describe('Wishlist page', () => {
 /* Account */
 test.describe('Account page', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tAccount page');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tAccount page');
   });
 
   test('Account login prompt when guest', async ({ page }, testInfo) => {
@@ -1743,7 +1743,7 @@ test.describe('Account page', () => {
 /* Footer routing E2E */
 test.describe('Footer and routing', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tFooter and routing');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tFooter and routing');
   });
 
   test('Footer Qase disclaimer', async ({ page }, testInfo) => {
@@ -1893,7 +1893,7 @@ test.describe('Footer and routing', () => {
 /* Demo compliance */
 test.describe('Demo compliance check', () => {
   test.beforeEach(() => {
-    qase.suite('Getting started with automation integration\tExamples\tFull regression\tDemo compliance check');
+    qase.suite('🚀 Getting started with Automation Integration\t✏️ Examples\tFull regression\tDemo compliance check');
   });
 
   test('Catalog must include Pro Carbon Cricket Bat', async ({ page }, testInfo) => {
