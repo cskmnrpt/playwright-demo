@@ -94,7 +94,11 @@ jobs:
           echo "HTTP $HTTP_CODE"
           cat "$RUNNER_TEMP/qase-run.json"
           echo
-          
+
+          # `// empty` handles a missing key; `|| true` handles a non-JSON body,
+          # which would otherwise abort the step before the error below is printed.
+          RUN_ID=$(jq -r '.result.id // empty' "$RUNNER_TEMP/qase-run.json" 2>/dev/null || true)
+
           # Fail loudly. If the run id is missing, the reporter would silently fall
           # back to creating its own run -- with is_autotest: true -- and the
           # workflow would go green while producing exactly the run type we are
