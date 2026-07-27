@@ -22,6 +22,7 @@ env:
   QASE_TESTOPS_PROJECT: ${{ vars.QASE_TESTOPS_PROJECT }}
   QASE_TESTOPS_RUN_COMPLETE: true
   QASE_ENVIRONMENT_SLUG: prod
+  QASE_TESTOPS_RUN_TITLE: Example of a manual type test run
 
 jobs:
   test:
