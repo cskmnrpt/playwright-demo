@@ -3,21 +3,17 @@ name: Example tests (manual-type run created via API)
 # Identical to `on_push.yml`, except the Qase test run is created up front with a
 # curl call to POST /v1/run instead of being created by the Playwright reporter.
 #
-# Why: the reporter hardcodes `is_autotest: true` when it creates a run
-# (qase-javascript-commons -> clientV1.prepareRunObject), which produces an
-# "automated" run. Automated runs disallow some in-run operations. Creating the
-# run ourselves with `is_autotest: false` yields a manual-type run, and the
-# reporter then reports into it instead of creating its own -- `clientV1.createRun()`
-# returns early when a run id is already configured.
+# Why: the reporter hardcodes `is_autotest: true` when it creates a run, 
+# which produces an "automated" run.
+
 
 on:
   push:
     branches:
-      - main # Trigger on pushes to the 'main' branch. Change this to your default branch if different.
-
+      - main 
   pull_request:
     branches:
-      - main # Trigger on pull requests to the 'main' branch.
+      - main
 
   workflow_dispatch:
 
@@ -25,13 +21,6 @@ env:
   QASE_TESTOPS_API_TOKEN: ${{ secrets.QASE_TESTOPS_API_TOKEN }}
   QASE_TESTOPS_PROJECT: ${{ vars.QASE_TESTOPS_PROJECT }}
   QASE_TESTOPS_RUN_COMPLETE: true
-
-  # The environment is applied by the curl call below via `environment_slug`, not by
-  # the reporter. The reporter only resolves its `environment` option inside
-  # createRun(), which is skipped when QASE_TESTOPS_RUN_ID is set -- so the
-  # `environment: "prod"` in playwright.config.js is inert in this workflow.
-  # An environment with this slug must already exist in the project, or the API
-  # rejects the run with a 422.
   QASE_ENVIRONMENT_SLUG: prod
 
 jobs:
@@ -64,14 +53,6 @@ jobs:
           ACTOR: ${{ github.actor }}
           WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          # github.head_ref is set on pull_request events, github.ref_name on push
-          # and workflow_dispatch. Using ${GITHUB_REF##*/} as on_push.yml does would
-          # yield the literal "merge" for pull requests.
-          COMMIT_MESSAGE=$(git log -1 --pretty=format:%s)
-
-          echo "QASE_TESTOPS_RUN_TITLE=qase-playwright@$BRANCH_NAME: $COMMIT_MESSAGE" >> "$GITHUB_ENV"
-
-          # Multi-line value, so use the heredoc form of $GITHUB_ENV.
           {
             echo "QASE_TESTOPS_RUN_DESCRIPTION<<QASE_DESC_EOF"
             echo "Triggered by: $EVENT_NAME"
@@ -112,16 +93,12 @@ jobs:
           echo "HTTP $HTTP_CODE"
           cat "$RUNNER_TEMP/qase-run.json"
           echo
-
-          # `// empty` covers a missing key; the `|| true` covers a non-JSON body
-          # (e.g. an HTML 502 from a proxy), which would otherwise abort the step
-          # before the error message below can be printed.
-          RUN_ID=$(jq -r '.result.id // empty' "$RUNNER_TEMP/qase-run.json" 2>/dev/null || true)
-
+          
           # Fail loudly. If the run id is missing, the reporter would silently fall
           # back to creating its own run -- with is_autotest: true -- and the
           # workflow would go green while producing exactly the run type we are
           # trying to avoid.
+          
           if ! [[ "$RUN_ID" =~ ^[0-9]+$ ]]; then
             echo "::error::Could not create the Qase test run (HTTP $HTTP_CODE). See the response body above."
             exit 1
