@@ -1,0 +1,19 @@
+.github/workflows/on_push_manual_run.yml
+  s_ceaf93b7587b35::t_10c4bdfc77a1e1 1-135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "cc1606749ffe3021d9ae92fcc5662eb4e665c8cd",
+  "prompts": {},
+  "sessions": {
+    "s_ceaf93b7587b35": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ae6f8c68-887b-4b33-9878-6092f7c6e6f3",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Manju R <cskmnrpt@gmail.com>"
+    }
+  }
+}
